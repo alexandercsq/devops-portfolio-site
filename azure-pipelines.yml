@@ -6,12 +6,7 @@ pool:
 
 variables:
   dockerImageName: 'alexandercsq/devops-portfolio-site'
-
-- script: |
-    docker build -t $(dockerImageName):$(Build.BuildId) ./site
-    docker login -u $(dockerHubUsername) -p $(dockerHubPassword)
-    docker push $(dockerImageName):$(Build.BuildId)
-  displayName: 'Build & Push Docker Image'
+  
   env:
     dockerHubUsername: $(dockerHubUsername)
     dockerHubPassword: $(dockerHubPassword)

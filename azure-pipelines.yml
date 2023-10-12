@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  dockerImageName: 'alexandercsq/devops-portfolio-site'
+
+steps:
+- script: docker --version
+  displayName: 'Check Docker Version'
+
+- script: |
+    docker build -t $(dockerImageName):$(Build.BuildId) ./site
+    docker login -u $(dockerHubUsername) -p $(dockerHubPassword)
+    docker push $(dockerImageName):$(Build.BuildId)
+  displayName: 'Build & Push Docker Image'
+  env:
+    dockerHubUsername: $(dockerHubUsername)
+    dockerHubPassword: $(dockerHubPassword)

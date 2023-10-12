@@ -6,10 +6,6 @@ pool:
 
 variables:
   dockerImageName: 'alexandercsq/devops-portfolio-site'
-  
-  env:
-    dockerHubUsername: $(dockerHubUsername)
-    dockerHubPassword: $(dockerHubPassword)
 
 jobs:
 - deployment: DeployToDev
